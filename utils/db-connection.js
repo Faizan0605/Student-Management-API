@@ -20,7 +20,7 @@ connection.connect((err) => {
 
 
     const createStudent = `
-        CREATE TABLE IF NOT EXISTS Users (
+        CREATE TABLE IF NOT EXISTS Students (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
             email VARCHAR(100) UNIQUE NOT NULL,
@@ -29,8 +29,7 @@ connection.connect((err) => {
     `;
 
     // Execute queries
-    const queries = [createStudent
-    ];
+    const queries = [createStudent];
 
     queries.forEach(query => {
         connection.execute(query, (err) => {
@@ -44,4 +43,4 @@ connection.connect((err) => {
 });
 
 
-module.exports = connection;
+module.exports = connection.promise();

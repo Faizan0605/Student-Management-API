@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./utils/db-connection')
-const studentRoutes = require('./routes/userRoutes')
+const studentRoutes = require('./routes/studentRoutes')
 
 const app = express();
 const port = 3333;
@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
     res.send("HEllow")
 })
 
-app.use("/student", studentRoutes);
+app.use("/students", studentRoutes);
 
 
 app.listen(port, () => {
