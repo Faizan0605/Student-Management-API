@@ -1,4 +1,6 @@
+
 const Students = require('../models/students');
+const IdentityCard = require('../models/identity');
 
 const createStudent = async (req, res) => {
     try {
@@ -7,7 +9,6 @@ const createStudent = async (req, res) => {
         if (!name || !email) {
             return res.status(400).json({ message: "Name and email are required" });
         }
-
         await Students.create({ name, email, age });
 
         res.status(201).json("User created");
@@ -17,7 +18,22 @@ const createStudent = async (req, res) => {
         }
         res.status(500).json({ error: error.message });
     }
-};
+}
+
+
+const addingValuesToStudentAndIndetifyTable = async (req, res) => {
+    try {
+        const student = await Students.create(req.body.student)
+        const idCard = await IdentityCard.create({
+            ...req.body.IdentityCard,
+            StudentId: student.id
+        })
+        res.status(201).json({ student, idCard })
+    } catch (err) {
+        res.status(500).json({ error: err.message })
+
+    }
+}
 
 const getAllStudents = async (req, res) => {
     try {
@@ -85,5 +101,6 @@ module.exports = {
     getAllStudents,
     getStudentById,
     updateStudent,
-    deleteStudent
+    deleteStudent,
+    addingValuesToStudentAndIndetifyTable
 };

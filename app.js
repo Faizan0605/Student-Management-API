@@ -1,12 +1,13 @@
 const express = require('express');
 const db = require('./utils/db-connection')
 const studentRoutes = require('./routes/studentRoutes')
+const courseRoutes = require('./routes/courseRoutes')
 
 require('./models');
 
 
 const app = express();
-const port = 3333;
+const port = 3000;
 app.use(express.json());
 
 
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.use("/students", studentRoutes);
+app.use("/courses", courseRoutes);
 
 
 
