@@ -2,7 +2,8 @@ const express = require('express');
 const db = require('./utils/db-connection')
 const studentRoutes = require('./routes/studentRoutes')
 
-const studentModel = require('./models/students');
+require('./models');
+
 
 const app = express();
 const port = 3333;
